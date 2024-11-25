@@ -1,35 +1,34 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../config/database');
 
 const Customer = sequelize.define('Customer', {
   customer_id: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
     primaryKey: true,
-    allowNull: false,
+    autoIncrement: true
   },
   first_name: {
-    type: DataTypes.STRING(50),
-    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: false
   },
   last_name: {
-    type: DataTypes.STRING(50),
-    allowNull: false,
+    type: DataTypes.STRING,
+    allowNull: false
   },
   email: {
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: true
   },
   phone: {
-    type: DataTypes.STRING(20),
-    allowNull: true,
+    type: DataTypes.STRING
   },
   registration_date: {
-    type: DataTypes.DATE,  // Correct the datatype here
-    defaultValue: DataTypes.NOW,  // Set default to the current date/time
-    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW
   },
+}, {
+  timestamps: false
 });
 
 module.exports = Customer;

@@ -1,39 +1,33 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require('../db');
-const Order = require("./order");
-const Product = require("./product");
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Order = require('./order');
+const Product = require('./product');
 
-const OrderItem = sequelize.define("OrderItem", {
-  order_item_id: {
+const OrderItem = sequelize.define('OrderItem', {
+  quantity: {
     type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+    allowNull: false
+  },
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false
   },
   order_id: {
     type: DataTypes.INTEGER,
     references: {
       model: Order,
-      key: "order_id",
-    },
+      key: 'id'
+    }
   },
   product_id: {
     type: DataTypes.INTEGER,
     references: {
       model: Product,
-      key: "product_id",
-    },
-  },
-  quantity: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  price: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
+      key: 'id'
+    }
   },
 }, {
-  tableName: "order_items",
-  timestamps: false,
+  timestamps: false
 });
 
 module.exports = OrderItem;

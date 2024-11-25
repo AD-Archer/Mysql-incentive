@@ -1,6 +1,6 @@
 # Test Data Insertion with Sequelize
 
-This project demonstrates how to set up a Sequelize model and insert test data into a MySQL database. It connects to a MySQL database, creates a table (if it doesn't already exist), and inserts a record with test data.
+This project demonstrates how to set up a Sequelize model and insert test data into a MySQL database. It connects to a MySQL database, creates tables (if they don't already exist), and inserts records with test data.
 
 ## Prerequisites
 
@@ -34,33 +34,49 @@ Before running the project, ensure that you have the following installed:
     DB_USER=your_db_username
     DB_PASSWORD=your_db_password
     DB_NAME=your_db_name
+    DB_DIALECT=mysql
     ```
 
 5. Ensure that your MySQL server is running and accessible.
 
 ## Usage
 
-1. After setting up the environment, run the script to insert test data into your MySQL database:
-    ```bash
-    node testData.js
-    ```
+### Step 1: Start the Application
 
-2. If the connection is successful and the table doesn’t already exist, it will be created. Then, a test record with the name "John Doe" and age 30 will be inserted into the `Test` table.
+To establish a connection to the database and create the necessary tables, run the following command:
 
-3. Check the console for messages confirming the success or failure of the database connection and data insertion.
+bash
+node backend/start.js
 
-4. Then run npm start to start the application
 
-## Dependencies
+This script will attempt to connect to the database using the credentials provided in the `.env` file. If the connection is successful, it will log a message indicating that the connection has been established.
 
-- `sequelize`: ORM for Node.js to interact with SQL databases.
-- `mysql2`: MySQL client for Node.js.
-- `dotenv`: Module to load environment variables from a `.env` file.
+### Step 2: Insert Sample Data
 
-## Contributing
+After successfully running `start.js`, you can insert sample data into the database by executing the following command:
 
-Feel free to fork this repository, submit issues, and create pull requests. Contributions are welcome!
+bash
+node backend/insertData.js
+
+This script will create sample records in the `Customers` and `Products` tables. It uses the `findOrCreate` method to avoid inserting duplicate entries.
+
+### Important Changes
+
+- The `insertData.js` script has been updated to correctly match the database schema, using `first_name` and `last_name` for the `Customer` model.
+- Ensure that your database schema matches the model definitions in the codebase.
+
+## Queries
+
+You can run the following SQL queries to interact with your database:
+
+- Query to get all orders with customer information.
+- Query to get order line items with product details.
+- Calculate total revenue per customer.
+- Calculate total revenue for the store.
+- Calculate the average order value for the store.
+- Count the number of orders per customer.
+- Query to count the number of orders in the past 30 days.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
