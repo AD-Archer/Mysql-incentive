@@ -23,3 +23,9 @@ Thumbs.db
 # Build files
 dist/
 build/
+
+# Mac OS X files
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
